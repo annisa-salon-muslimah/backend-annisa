@@ -3,13 +3,30 @@ package database
 import (
 	"database/sql"
 	"log"
+	"os"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/joho/godotenv"
 )
 
 func InitDb() (*sql.DB, error) {
 
-	db, err := sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/annisa")
+	if _, exists := os.LookupEnv("RAILWAY_ENVIRONMENT"); exists == false {
+		if err := godotenv.Load("../.env"); err != nil {
+			log.Fatal("error loading .env file:", err)
+		}
+	}
+
+	dbUsername := os.Getenv("MYSQLUSER")
+	dbPassword := os.Getenv("MYSQLPASSWORD")
+	dbHost := os.Getenv("MYSQLHOST")
+	dbPort := os.Getenv("MYSQLPORT")
+	dbName := os.Getenv("MYSQLDATABASE")
+	
+	// Gunakan nilai variabel lingkungan untuk koneksi database
+	dsn := dbUsername + ":" + dbPassword + "@tcp(" + dbHost + ":" + dbPort + ")/" + dbName + "?charset=utf8mb4&parseTime=True&loc=Local"
+
+	db, err := sql.Open("mysql", dsn)
 	if err != nil {
 		log.Fatal("Error Connection to db", err)
 	}
