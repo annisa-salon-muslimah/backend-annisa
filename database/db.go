@@ -11,7 +11,7 @@ import (
 
 func InitDb() (*sql.DB, error) {
 	if _, exists := os.LookupEnv("RAILWAY_ENVIRONMENT"); exists == false {
-		if err := godotenv.Load("../.env"); err != nil {
+		if err := godotenv.Load(); err != nil {
 			log.Fatal("error loading .env file:", err)
 		}
 	}
@@ -46,6 +46,7 @@ func InitDb() (*sql.DB, error) {
 			Password VARCHAR(255) NOT NULL
 		)
 	`)
+
 	if err != nil {
 		return nil, err
 	}
