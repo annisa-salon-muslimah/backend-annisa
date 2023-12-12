@@ -43,7 +43,7 @@ func ToBase64(b []byte) string {
 
 
 func ImageKit(ctx context.Context, base64Image string) (string, error) {
-	err := godotenv.Load(".env")
+	err := godotenv.Load("../.env")
     if err != nil {
         panic("Failed to load .env file")
     }
