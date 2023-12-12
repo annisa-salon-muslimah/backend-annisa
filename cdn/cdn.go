@@ -11,7 +11,6 @@ import (
 
 	"github.com/imagekit-developer/imagekit-go"
 	"github.com/imagekit-developer/imagekit-go/api/uploader"
-	"github.com/joho/godotenv"
 )
 
 func Base64toEncode(bytes []byte) (string,error){
@@ -43,10 +42,6 @@ func ToBase64(b []byte) string {
 
 
 func ImageKit(ctx context.Context, base64Image string) (string, error) {
-	err := godotenv.Load("../.env")
-    if err != nil {
-        panic("Failed to load .env file")
-    }
 	
 	privateKey := os.Getenv("IMAGEKIT_PRIVATE_KEY")
     publicKey := os.Getenv("IMAGEKIT_PUBLIC_KEY")
