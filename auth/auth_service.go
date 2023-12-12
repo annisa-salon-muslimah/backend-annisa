@@ -11,7 +11,7 @@ type UserAuthService interface {
 	ValidasiToken(token string) (*jwt.Token, error)
 }
 
-var SECRET_KEY = []byte("test")
+var SecretKey []byte
 
 type jwtService struct {
 }
@@ -20,12 +20,16 @@ func NewUserAuthService() *jwtService {
 	return &jwtService{}
 }
 
+func (s *jwtService) SetSecretKey(key string) {
+	SecretKey = []byte(key)
+}
+
 func (s *jwtService) GenerateToken(userID int, role int) (string, error) {
 	claim := jwt.MapClaims{}
 	claim["user_id"] = userID
 	claim["role"] = role
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claim)
-	signedToken, err := token.SignedString(SECRET_KEY)
+	signedToken, err := token.SignedString(SecretKey)
 	if err != nil {
 		return signedToken, err
 	}
@@ -38,7 +42,7 @@ func (s *jwtService) ValidasiToken(encodedToken string) (*jwt.Token, error) {
 		if !ok {
 			return nil, errors.New("invalid token")
 		}
-		return []byte(SECRET_KEY), nil
+		return []byte(SecretKey), nil
 	})
 	if err != nil {
 		return token, err

@@ -7,6 +7,7 @@ import (
 	"annisa-salon/repository"
 	"annisa-salon/service"
 	"log"
+	"os"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -18,6 +19,8 @@ func StartApp() {
 		log.Fatal("Eror Db Connection")
 	}
 
+	secretKey := os.Getenv("SECRET_KEY")
+
 	router := gin.Default()
 	router.Use(cors.New(cors.Config{
 		AllowAllOrigins: true,
@@ -28,6 +31,7 @@ func StartApp() {
 	userRepository := repository.NewUserRepository(db)
 	userService := service.NewUserService(userRepository)
 	authService := auth.NewUserAuthService()
+	authService.SetSecretKey(secretKey)
 	userHandler := NewUserHandler(userService, authService)
 
 	blogRepository := repository.NewBlogRepository(db)
