@@ -355,18 +355,13 @@ const docTemplate = `{
                 "summary": "Create New treatment",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "TreatmentName",
-                        "name": "treatment_name",
-                        "in": "formData",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Price",
-                        "name": "price",
-                        "in": "formData",
-                        "required": true
+                        "description": "Treatments input details",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/input.InputTreatments"
+                        }
                     }
                 ],
                 "responses": {
@@ -421,18 +416,13 @@ const docTemplate = `{
                         "required": true
                     },
                     {
-                        "type": "string",
-                        "description": "TreatmentName",
-                        "name": "treatment_name",
-                        "in": "formData",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Price",
-                        "name": "price",
-                        "in": "formData",
-                        "required": true
+                        "description": "Treatments input details",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/input.InputTreatments"
+                        }
                     }
                 ],
                 "responses": {
@@ -678,6 +668,25 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "input.InputTreatments": {
+            "type": "object",
+            "required": [
+                "description",
+                "price",
+                "treatment_name"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "integer"
+                },
+                "treatment_name": {
+                    "type": "string"
+                }
+            }
+        },
         "input.UserInput": {
             "type": "object",
             "required": [

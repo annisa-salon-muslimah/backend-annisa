@@ -1,4 +1,17 @@
 definitions:
+  input.InputTreatments:
+    properties:
+      description:
+        type: string
+      price:
+        type: integer
+      treatment_name:
+        type: string
+    required:
+    - description
+    - price
+    - treatment_name
+    type: object
   input.UserInput:
     properties:
       email:
@@ -237,16 +250,12 @@ paths:
       - application/json
       description: Create New treatment
       parameters:
-      - description: TreatmentName
-        in: formData
-        name: treatment_name
+      - description: Treatments input details
+        in: body
+        name: body
         required: true
-        type: string
-      - description: Price
-        in: formData
-        name: price
-        required: true
-        type: string
+        schema:
+          $ref: '#/definitions/input.InputTreatments'
       produces:
       - application/json
       responses:
@@ -314,16 +323,12 @@ paths:
         name: slug
         required: true
         type: string
-      - description: TreatmentName
-        in: formData
-        name: treatment_name
+      - description: Treatments input details
+        in: body
+        name: body
         required: true
-        type: string
-      - description: Price
-        in: formData
-        name: price
-        required: true
-        type: string
+        schema:
+          $ref: '#/definitions/input.InputTreatments'
       produces:
       - application/json
       responses:

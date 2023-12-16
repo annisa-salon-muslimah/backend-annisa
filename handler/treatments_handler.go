@@ -26,8 +26,7 @@ func NewTreatmentsHandler(treatmentService service.ServiceTreatments, authServic
 // @Produce json
 // @Tags Treatment
 // @Security BearerAuth
-// @Param treatment_name formData string true "TreatmentName"
-// @Param price formData string true "Price"
+// @Param body body input.InputTreatments true "Treatments input details"
 // @Success 200 {object} map[string]interface{}
 // @Failure 400 {object} map[string]interface{}
 // @Failure 422 {object} map[string]interface{}
@@ -60,8 +59,7 @@ func (h *treatmentsHandler) CreateTreatments (c *gin.Context) {
 // @Tags Treatment
 // @Security BearerAuth
 // @Param slug path string true "slug treatment"
-// @Param treatment_name formData string true "TreatmentName"
-// @Param price formData string true "Price"
+// @Param body body input.InputTreatments true "Treatments input details"
 // @Success 200 {object} map[string]interface{}
 // @Failure 400 {object} map[string]interface{}
 // @Failure 422 {object} map[string]interface{}
