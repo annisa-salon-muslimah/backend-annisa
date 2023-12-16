@@ -31,9 +31,9 @@ func NewBlogHandler(blogService service.ServiceBlog, authService auth.UserAuthSe
 // @Produce json
 // @Tags blog
 // @Security BearerAuth
-// @Param File formData file true "File gambar"
-// @Param Title formData string true "Title"
-// @Param Description formData string true "Description"
+// @Param file formData file true "File gambar"
+// @Param title formData string true "Title"
+// @Param description formData string true "Description"
 // @Success 200 {object} map[string]interface{}
 // @Failure 400 {object} map[string]interface{}
 // @Failure 422 {object} map[string]interface{}
@@ -116,9 +116,9 @@ func (h *blogHandler) CreateBlog(c *gin.Context) {
 // @Tags blog
 // @Security BearerAuth
 // @Param slug path string true "slug blog"
-// @Param File formData file true "File gambar"
-// @Param Title formData string true "Title"
-// @Param Description formData string true "Description"
+// @Param file formData file true "File gambar"
+// @Param title formData string true "Title"
+// @Param description formData string true "Description"
 // @Success 200 {object} map[string]interface{}
 // @Failure 400 {object} map[string]interface{}
 // @Failure 422 {object} map[string]interface{}
@@ -190,7 +190,7 @@ func (h *blogHandler) UpdateBlog (c *gin.Context){
 // GetAllBlog 
 // @Summary Get all blogs
 // @Description Retrieve all blogs with pagination
-// @Tags Blogs
+// @Tags Blog
 // @Accept json
 // @Produce json
 // @Param page query integer false "Page number for pagination (default is 1)"
@@ -198,7 +198,7 @@ func (h *blogHandler) UpdateBlog (c *gin.Context){
 // @Success 200 {object} map[string]interface{}
 // @Failure 400 {object} map[string]interface{}
 // @Failure 422 {object} map[string]interface{}
-// @Router /api/blogs [get]
+// @Router /api/blog [get]
 func (h *blogHandler) GetAllBlog(c *gin.Context) {
     page, err := strconv.Atoi(c.Query("page"))
     if err != nil || page <= 0 {
@@ -224,14 +224,14 @@ func (h *blogHandler) GetAllBlog(c *gin.Context) {
 // GetOneBlog 
 // @Summary Get a single blog by slug
 // @Description Retrieve a single blog using its slug
-// @Tags Blogs
+// @Tags Blog
 // @Accept json
 // @Produce json
 // @Param slug path string true "Slug of the blog"
 // @Success 200 {object} map[string]interface{}
 // @Failure 400 {object} map[string]interface{}
 // @Failure 422 {object} map[string]interface{}
-// @Router /api/blogs/{slug} [get]
+// @Router /api/blog/{slug} [get]
 func (h *blogHandler) GetOneBlog (c *gin.Context) {
 	slug := c.Param("slug")
 
@@ -250,7 +250,7 @@ func (h *blogHandler) GetOneBlog (c *gin.Context) {
 // DeleteBlog 
 // @Summary Delete a blog by slug
 // @Description Delete a blog by its slug
-// @Tags Blogs
+// @Tags Blog
 // @Accept json
 // @Produce json
 // @Security BearerAuth
@@ -258,7 +258,7 @@ func (h *blogHandler) GetOneBlog (c *gin.Context) {
 // @Success 200 {object} map[string]interface{}
 // @Failure 400 {object} map[string]interface{}
 // @Failure 422 {object} map[string]interface{}
-// @Router /api/blogs/{slug} [delete]
+// @Router /api/blog/{slug} [delete]
 func (h *blogHandler) DeleteBlog (c *gin.Context) {
 	slug := c.Param("slug")
 

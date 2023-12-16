@@ -19,6 +19,19 @@ func NewTreatmentsHandler(treatmentService service.ServiceTreatments, authServic
 	return &treatmentsHandler{treatmentService, authService}
 }
 
+
+// @Summary Create New treatment
+// @Description Create New treatment 
+// @Accept json
+// @Produce json
+// @Tags Treatment
+// @Security BearerAuth
+// @Param treatment_name formData string true "TreatmentName"
+// @Param price formData string true "Price"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} map[string]interface{}
+// @Failure 422 {object} map[string]interface{}
+// @Router /api/treatment [post]
 func (h *treatmentsHandler) CreateTreatments (c *gin.Context) {
 	var inputTreatments input.InputTreatments
 
@@ -40,6 +53,19 @@ func (h *treatmentsHandler) CreateTreatments (c *gin.Context) {
 	c.JSON(http.StatusOK, response)
 }
 
+// @Summary Update treatment by slug
+// @Description Update treatment by slug 
+// @Accept json
+// @Produce json
+// @Tags Treatment
+// @Security BearerAuth
+// @Param slug path string true "slug treatment"
+// @Param treatment_name formData string true "TreatmentName"
+// @Param price formData string true "Price"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} map[string]interface{}
+// @Failure 422 {object} map[string]interface{}
+// @Router /api/treatment/{slug} [put]
 func (h *treatmentsHandler) UpdatedTreatment(c *gin.Context) {
 	slug := c.Param("slug")
 
@@ -63,6 +89,16 @@ func (h *treatmentsHandler) UpdatedTreatment(c *gin.Context) {
 	c.JSON(http.StatusOK, response)
 }
 
+// GetAllTreatments 
+// @Summary Get All treatment
+// @Description Get All treatment
+// @Accept json
+// @Produce json
+// @Tags treatment
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} map[string]interface{}
+// @Failure 422 {object} map[string]interface{}
+// @Router /api/treatment [get]
 func (h *treatmentsHandler) GetAllTreatments (c *gin.Context){
 	// slug := c.Param("slug")
 	// finalSlug = c.Param("finalSlug")
@@ -79,6 +115,17 @@ func (h *treatmentsHandler) GetAllTreatments (c *gin.Context){
 	c.JSON(http.StatusOK, response)
 }
 
+// GetOneTreatment 
+// @Summary Get a single treatment by slug
+// @Description Retrieve a single treatment using its slug
+// @Tags treatment
+// @Accept json
+// @Produce json
+// @Param slug path string true "Slug of the treatment"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} map[string]interface{}
+// @Failure 422 {object} map[string]interface{}
+// @Router /api/treatments/{slug} [get]
 func (h *treatmentsHandler) GetOneTreatment (c *gin.Context) {
 	slug := c.Param("slug")
 
@@ -94,6 +141,18 @@ func (h *treatmentsHandler) GetOneTreatment (c *gin.Context) {
 	c.JSON(http.StatusOK, response)
 }
 
+// DeleteTreatment 
+// @Summary Delete a treatment by slug
+// @Description Delete a treatment by its slug
+// @Tags treatment
+// @Accept json
+// @Produce json
+// @Security BearerAuth
+// @Param slug path string true "Slug of the treatment to be deleted"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} map[string]interface{}
+// @Failure 422 {object} map[string]interface{}
+// @Router /api/treatment/{slug} [delete]
 func (h *treatmentsHandler) DeleteTreatment (c *gin.Context) {
 	slug := c.Param("slug")
 

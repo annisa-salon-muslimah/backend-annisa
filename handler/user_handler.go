@@ -19,6 +19,18 @@ import (
 		return &userHandler{userService, authService}
 	}
 
+	// @Summary Register new user
+	// @Description Register a new user with the provided information
+	// @Accept json
+	// @Produce json
+	// @Tags Users
+	// @Param body body input.UserInput true "User registration details"
+	// @Success 200 {object} map[string]interface{}
+	// @Failure 400 {object} map[string]interface{}
+	// @Failure 409 {object} map[string]interface{}
+	// @Failure 422 {object} map[string]interface{}
+	// @Failure 500 {object} map[string]interface{}
+	// @Router /api/user/register [post]
 	func (h *userHandler) RegisterUser(c *gin.Context) {
 		var input input.UserInput
 
@@ -56,6 +68,17 @@ import (
 		c.JSON(http.StatusOK, response)
 	}
 
+	// @Summary User login
+	// @Description Log in an existing user using email and password
+	// @Accept json
+	// @Produce json
+	// @Tags Users
+	// @Param body body input.UserInput true "User login details"
+	// @Success 200 {object} map[string]interface{}
+	// @Failure 400 {object} map[string]interface{}
+	// @Failure 422 {object} map[string]interface{}
+	// @Failure 500 {object} map[string]interface{}
+	// @Router /api/user/login [post]
 func (h *userHandler) Login(c *gin.Context) {
 	var input input.UserInput
 
