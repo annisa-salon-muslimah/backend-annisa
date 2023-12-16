@@ -92,7 +92,7 @@ paths:
       - BearerAuth: []
       summary: Create New blog
       tags:
-      - blog
+      - Blog
   /api/blog/{slug}:
     delete:
       consumes:
@@ -205,7 +205,7 @@ paths:
       - BearerAuth: []
       summary: Update blog by slug
       tags:
-      - blog
+      - Blog
   /api/treatment:
     get:
       consumes:
@@ -231,7 +231,7 @@ paths:
             type: object
       summary: Get All treatment
       tags:
-      - treatment
+      - Treatment
     post:
       consumes:
       - application/json
@@ -303,7 +303,7 @@ paths:
       - BearerAuth: []
       summary: Delete a treatment by slug
       tags:
-      - treatment
+      - Treatment
     put:
       consumes:
       - application/json
@@ -378,7 +378,7 @@ paths:
             type: object
       summary: Get a single treatment by slug
       tags:
-      - treatment
+      - Treatment
   /api/user/login:
     post:
       consumes:

@@ -72,7 +72,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "blog"
+                    "Blog"
                 ],
                 "summary": "Create New blog",
                 "parameters": [
@@ -183,7 +183,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "blog"
+                    "Blog"
                 ],
                 "summary": "Update blog by slug",
                 "parameters": [
@@ -301,7 +301,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "treatment"
+                    "Treatment"
                 ],
                 "summary": "Get All treatment",
                 "responses": {
@@ -465,7 +465,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "treatment"
+                    "Treatment"
                 ],
                 "summary": "Delete a treatment by slug",
                 "parameters": [
@@ -512,7 +512,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "treatment"
+                    "Treatment"
                 ],
                 "summary": "Get a single treatment by slug",
                 "parameters": [

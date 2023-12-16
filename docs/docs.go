@@ -80,7 +80,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "blog"
+                    "Blog"
                 ],
                 "summary": "Create New blog",
                 "parameters": [
@@ -191,7 +191,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "blog"
+                    "Blog"
                 ],
                 "summary": "Update blog by slug",
                 "parameters": [
@@ -309,7 +309,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "treatment"
+                    "Treatment"
                 ],
                 "summary": "Get All treatment",
                 "responses": {
@@ -473,7 +473,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "treatment"
+                    "Treatment"
                 ],
                 "summary": "Delete a treatment by slug",
                 "parameters": [
@@ -520,7 +520,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "treatment"
+                    "Treatment"
                 ],
                 "summary": "Get a single treatment by slug",
                 "parameters": [
