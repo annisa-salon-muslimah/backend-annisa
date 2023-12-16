@@ -94,7 +94,7 @@ func (h *treatmentsHandler) UpdatedTreatment(c *gin.Context) {
 // @Description Get All treatment
 // @Accept json
 // @Produce json
-// @Tags treatment
+// @Tags Treatment
 // @Success 200 {object} map[string]interface{}
 // @Failure 400 {object} map[string]interface{}
 // @Failure 422 {object} map[string]interface{}
@@ -118,7 +118,7 @@ func (h *treatmentsHandler) GetAllTreatments (c *gin.Context){
 // GetOneTreatment 
 // @Summary Get a single treatment by slug
 // @Description Retrieve a single treatment using its slug
-// @Tags treatment
+// @Tags Treatment
 // @Accept json
 // @Produce json
 // @Param slug path string true "Slug of the treatment"
@@ -144,7 +144,7 @@ func (h *treatmentsHandler) GetOneTreatment (c *gin.Context) {
 // DeleteTreatment 
 // @Summary Delete a treatment by slug
 // @Description Delete a treatment by its slug
-// @Tags treatment
+// @Tags Treatment
 // @Accept json
 // @Produce json
 // @Security BearerAuth

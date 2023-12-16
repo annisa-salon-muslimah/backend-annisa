@@ -29,7 +29,7 @@ func NewBlogHandler(blogService service.ServiceBlog, authService auth.UserAuthSe
 // @Description Create New blog 
 // @Accept json
 // @Produce json
-// @Tags blog
+// @Tags Blog
 // @Security BearerAuth
 // @Param file formData file true "File gambar"
 // @Param title formData string true "Title"
@@ -113,7 +113,7 @@ func (h *blogHandler) CreateBlog(c *gin.Context) {
 // @Description Update blog by slug 
 // @Accept json
 // @Produce json
-// @Tags blog
+// @Tags Blog
 // @Security BearerAuth
 // @Param slug path string true "slug blog"
 // @Param file formData file true "File gambar"
