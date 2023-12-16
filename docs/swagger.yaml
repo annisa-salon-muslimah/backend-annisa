@@ -1,0 +1,205 @@
+host: backend-annisa-production.up.railway.app
+info:
+  contact: {}
+  description: Sweager service API in Go using Gin framework
+  title: Sweager Service API
+paths:
+  /api/blog:
+    post:
+      consumes:
+      - application/json
+      description: Create New blog
+      parameters:
+      - description: File gambar
+        in: formData
+        name: File
+        required: true
+        type: file
+      - description: Title
+        in: formData
+        name: Title
+        required: true
+        type: string
+      - description: Description
+        in: formData
+        name: Description
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+        "422":
+          description: Unprocessable Entity
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Create New blog
+      tags:
+      - blog
+  /api/blog/{slug}:
+    put:
+      consumes:
+      - application/json
+      description: Update blog by slug
+      parameters:
+      - description: slug blog
+        in: path
+        name: slug
+        required: true
+        type: string
+      - description: File gambar
+        in: formData
+        name: File
+        required: true
+        type: file
+      - description: Title
+        in: formData
+        name: Title
+        required: true
+        type: string
+      - description: Description
+        in: formData
+        name: Description
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+        "422":
+          description: Unprocessable Entity
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Update blog by slug
+      tags:
+      - blog
+  /api/blogs:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve all blogs with pagination
+      parameters:
+      - description: Page number for pagination (default is 1)
+        in: query
+        name: page
+        type: integer
+      - description: Number of items per page (default is 10)
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+        "422":
+          description: Unprocessable Entity
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get all blogs
+      tags:
+      - Blogs
+  /api/blogs/{slug}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a blog by its slug
+      parameters:
+      - description: Slug of the blog to be deleted
+        in: path
+        name: slug
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+        "422":
+          description: Unprocessable Entity
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Delete a blog by slug
+      tags:
+      - Blogs
+    get:
+      consumes:
+      - application/json
+      description: Retrieve a single blog using its slug
+      parameters:
+      - description: Slug of the blog
+        in: path
+        name: slug
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+        "422":
+          description: Unprocessable Entity
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get a single blog by slug
+      tags:
+      - Blogs
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

@@ -25,6 +25,19 @@ func NewBlogHandler(blogService service.ServiceBlog, authService auth.UserAuthSe
 	return &blogHandler{blogService, authService}
 }
 
+// @Summary Create New blog
+// @Description Create New blog 
+// @Accept json
+// @Produce json
+// @Tags blog
+// @Security BearerAuth
+// @Param File formData file true "File gambar"
+// @Param Title formData string true "Title"
+// @Param Description formData string true "Description"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} map[string]interface{}
+// @Failure 422 {object} map[string]interface{}
+// @Router /api/blog [post]
 func (h *blogHandler) CreateBlog(c *gin.Context) {
 	file, err := c.FormFile("file")
 	if err != nil {
@@ -96,6 +109,20 @@ func (h *blogHandler) CreateBlog(c *gin.Context) {
 
 }
 
+// @Summary Update blog by slug
+// @Description Update blog by slug 
+// @Accept json
+// @Produce json
+// @Tags blog
+// @Security BearerAuth
+// @Param slug path string true "slug blog"
+// @Param File formData file true "File gambar"
+// @Param Title formData string true "Title"
+// @Param Description formData string true "Description"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} map[string]interface{}
+// @Failure 422 {object} map[string]interface{}
+// @Router /api/blog/{slug} [put]
 func (h *blogHandler) UpdateBlog (c *gin.Context){
 
 	file, err := c.FormFile("file")
@@ -155,11 +182,23 @@ func (h *blogHandler) UpdateBlog (c *gin.Context){
         return
 	}
 	
-	data := gin.H{"is_uploaded": true}
+	data := gin.H{"is_updated": true}
 	response := helper.APIresponse(http.StatusOK, data)
 	c.JSON(http.StatusOK, response)
 }
 
+// GetAllBlog 
+// @Summary Get all blogs
+// @Description Retrieve all blogs with pagination
+// @Tags Blogs
+// @Accept json
+// @Produce json
+// @Param page query integer false "Page number for pagination (default is 1)"
+// @Param limit query integer false "Number of items per page (default is 10)"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} map[string]interface{}
+// @Failure 422 {object} map[string]interface{}
+// @Router /api/blogs [get]
 func (h *blogHandler) GetAllBlog(c *gin.Context) {
     page, err := strconv.Atoi(c.Query("page"))
     if err != nil || page <= 0 {
@@ -182,7 +221,17 @@ func (h *blogHandler) GetAllBlog(c *gin.Context) {
     c.JSON(http.StatusOK, response)
 }
 
-
+// GetOneBlog 
+// @Summary Get a single blog by slug
+// @Description Retrieve a single blog using its slug
+// @Tags Blogs
+// @Accept json
+// @Produce json
+// @Param slug path string true "Slug of the blog"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} map[string]interface{}
+// @Failure 422 {object} map[string]interface{}
+// @Router /api/blogs/{slug} [get]
 func (h *blogHandler) GetOneBlog (c *gin.Context) {
 	slug := c.Param("slug")
 
@@ -198,6 +247,18 @@ func (h *blogHandler) GetOneBlog (c *gin.Context) {
 	c.JSON(http.StatusOK, response)
 }
 
+// DeleteBlog 
+// @Summary Delete a blog by slug
+// @Description Delete a blog by its slug
+// @Tags Blogs
+// @Accept json
+// @Produce json
+// @Security BearerAuth
+// @Param slug path string true "Slug of the blog to be deleted"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} map[string]interface{}
+// @Failure 422 {object} map[string]interface{}
+// @Router /api/blogs/{slug} [delete]
 func (h *blogHandler) DeleteBlog (c *gin.Context) {
 	slug := c.Param("slug")
 
@@ -209,7 +270,7 @@ func (h *blogHandler) DeleteBlog (c *gin.Context) {
         return
 	}
 	
-	response := helper.APIresponse(http.StatusOK, "treatment has succesfuly deleted")
+	response := helper.APIresponse(http.StatusOK, "blog has succesfuly deleted")
 	c.JSON(http.StatusOK, response)
 }
 
