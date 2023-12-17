@@ -55,18 +55,18 @@ func StartApp() {
 	user.POST("/login", userHandler.Login)
 
 	blog := router.Group("api/blog")
-	blog.POST("/create-blog", middleware.AuthMiddleware(authService, userService), middleware.AuthRole(authService, userService), blogHandler.CreateBlog)
-	blog.PUT("/update-blog/:slug", middleware.AuthMiddleware(authService, userService), middleware.AuthRole(authService, userService),blogHandler.UpdateBlog)
+	blog.POST("/", middleware.AuthMiddleware(authService, userService), middleware.AuthRole(authService, userService), blogHandler.CreateBlog)
+	blog.PUT("/:slug", middleware.AuthMiddleware(authService, userService), middleware.AuthRole(authService, userService),blogHandler.UpdateBlog)
 	blog.GET("/:slug", blogHandler.GetOneBlog)
 	blog.GET("/", blogHandler.GetAllBlog)
-	blog.DELETE("/delete-blog/:slug", middleware.AuthMiddleware(authService, userService), middleware.AuthRole(authService, userService), blogHandler.DeleteBlog)
+	blog.DELETE("/:slug", middleware.AuthMiddleware(authService, userService), middleware.AuthRole(authService, userService), blogHandler.DeleteBlog)
 
 	treatment := router.Group("api/treatment")
-	treatment.POST("/create-treatment", middleware.AuthMiddleware(authService, userService), middleware.AuthRole(authService, userService), treatmentHandler.CreateTreatments)
-	treatment.PUT("/update-treatment/:slug", middleware.AuthMiddleware(authService, userService), middleware.AuthRole(authService, userService), treatmentHandler.UpdatedTreatment)
+	treatment.POST("/", middleware.AuthMiddleware(authService, userService), middleware.AuthRole(authService, userService), treatmentHandler.CreateTreatments)
+	treatment.PUT("/:slug", middleware.AuthMiddleware(authService, userService), middleware.AuthRole(authService, userService), treatmentHandler.UpdatedTreatment)
 	treatment.GET("/:slug", treatmentHandler.GetOneTreatment)
 	treatment.GET("/", treatmentHandler.GetAllTreatments)
-	treatment.DELETE("/delete-treatment/:slug", middleware.AuthMiddleware(authService, userService), middleware.AuthRole(authService, userService), treatmentHandler.DeleteTreatment)
+	treatment.DELETE("/:slug", middleware.AuthMiddleware(authService, userService), middleware.AuthRole(authService, userService), treatmentHandler.DeleteTreatment)
 
 	router.Run(":8080")
 
